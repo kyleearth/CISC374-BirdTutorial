@@ -7,6 +7,8 @@ public class BirdScript : MonoBehaviour
     public LogicScript logic;
     public bool birdIsAlive = true;
 
+    public AudioSource crashSFX;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,6 +35,9 @@ private void OnCollisionEnter2D(Collision2D collision)
     //logic.gameOver();
     //Debug.Log("Collision detected with: " + collision.gameObject.name);
     //Debug.Log("Game Over 2");
+        
+    crashSFX.Play();
+
     logic.gameOver();
     //Debug.Log("Game Over 3");
     birdIsAlive = false;

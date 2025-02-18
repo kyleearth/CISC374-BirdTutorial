@@ -4,6 +4,9 @@ public class PipeMiddleScript : MonoBehaviour
 {   
     public LogicScript logic;
     public bool birdIsAlive;
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

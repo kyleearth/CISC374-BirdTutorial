@@ -9,18 +9,25 @@ public class LogicScript : MonoBehaviour
     public GameObject gameOverScreens;
     public AudioSource dingSFX;
 
-    public AudioSource crashSFX;
+    //public AudioSource crashSFX;
 
     //public TextMeshProUGUI highScoreText; // Assign in Inspector
     
     public int highScore;
     public Text highScoreText;
+
+    private void Start()
+    {
+        // Load the saved high score at the beginning of the game
+        highScore = PlayerPrefs.GetInt("HighScore");
+        highScoreText.text = "High Score: " + highScore.ToString();
+    }
     
     //[ContextMenu("Add Score")]
     public void addScore(int scoreToAdd=1)
     {
         playerScore = playerScore + scoreToAdd;
-        scoreText.text = playerScore.ToString();
+        scoreText.text = playerScore.ToString();;
         dingSFX.Play();
     }
     // public void resetScore()
@@ -36,7 +43,7 @@ public class LogicScript : MonoBehaviour
 
     public void gameOver()
     {   
-        crashSFX.Play();
+        //crashSFX.Play();
         //Debug.Log("Game Over 1");
         gameOverScreens.SetActive(true);
         //Debug.Log("Game Over 2");
@@ -45,7 +52,8 @@ public class LogicScript : MonoBehaviour
         {
             highScore = playerScore;
             PlayerPrefs.SetInt("HighScore", playerScore);
-            highScoreText.text = "high Score: "+ highScore.ToString();
+            PlayerPrefs.Save();
+            highScoreText.text = "High Score: "+ highScore.ToString();
         }
 
     }
